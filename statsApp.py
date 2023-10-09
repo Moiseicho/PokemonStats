@@ -4,6 +4,16 @@ class PokemonStats:
     
     def get_stats(self):
         total_pokemon = len(self.pokemon_list)
+        if(total_pokemon == 0):
+            return {
+                "total_pokemon":0,
+                "avg_attack": 0,
+                "avg_defense": 0,
+                "avg_hp": 0,
+                "avg_sp_atk": 0,
+                "avg_sp_def": 0,
+                "avg_speed": 0
+            }
         total_attack = 0
         total_defense = 0
         total_hp = 0
@@ -17,6 +27,9 @@ class PokemonStats:
             total_sp_atk += int(pokemon["Sp. Atk"])
             total_sp_def += int(pokemon["Sp. Def"])
             total_speed += int(pokemon["Speed"])
+        
+        assert(total_pokemon != 0)
+        
         avg_attack = total_attack / total_pokemon
         avg_defense = total_defense / total_pokemon
         avg_hp = total_hp / total_pokemon

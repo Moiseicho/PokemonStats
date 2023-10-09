@@ -1,0 +1,4 @@
+#,Name,Type 1,Type 2,Total,HP,Attack,Defense,Sp. Atk,Sp. Def,Speed,Generation,Legendary
+1,Bulbasaur,Grass,Poison,318,45,49,49,65,65,45,1,False
+4,Charmander,Fire,,309,39,52,43,60,50,65,1,False
+7,Squirtle,Water,,314,44,48,65,50,64,43,1,False

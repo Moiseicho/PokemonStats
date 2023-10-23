@@ -1,9 +1,22 @@
+import os.path
 from statsApp import PokemonStats
 from readerApp import PokemonReader
+from arena import Arena
 
 file_path = input("Enter the file path of the CSV file: ")
-reader = PokemonReader(file_path)
-pokemon_stats = PokemonStats(reader.pokemon_list)
+
+while not os.path.isfile(file_path):
+    print("File path does not exist. Please enter a valid file path.")
+    file_path = input("Enter the file path of the CSV file: ")
+
+try:
+    reader = PokemonReader(file_path)
+    pokemon_stats = PokemonStats(reader.pokemon_list)
+except Exception as e:
+    Exception(f"There is an error with the file: {e}. Please fix it and try again.")
+    
+    
+
 
 while True:
     print("Which statistic would you like to see?")
@@ -21,7 +34,8 @@ while True:
     print("12. Top 10 Pokemon by Special Defense")
     print("13. Top 10 Pokemon by Speed")
     print("14. Print the whole CSV")
-    print("15. Exit")
+    print("15. Start a battle")
+    print("16. Exit")
 
     choice = int(input("Enter your choice: "))
 
@@ -68,8 +82,16 @@ while True:
         for pokemon in reader.pokemon_list:
             print(pokemon)
     elif choice == 15:
+        arena = Arena()
+        p1_pokemon_names = input("Enter Player 1's 6 Pokemon names separated by commas without space: ").split(",")
+        p2_pokemon_names = input("Enter Player 2's 6 Pokemon names separated by commas without space: ").split(",")
+        try:
+            arena.battle(reader.pokemon_list, p1_pokemon_names, p2_pokemon_names)
+        except Exception as e:
+            print(e)
+    elif choice == 16:
         break
     else:
-        print("Invalid choice. Please enter a number between 1 and 15.")
+        print("Invalid choice. Please enter a number between 1 and 16.")
     
     input("Press enter to continue...")
